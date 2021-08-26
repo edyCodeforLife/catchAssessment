@@ -1,7 +1,7 @@
 
 import Card from '@material-ui/core/Card';
 import styled from 'styled-components';
-import { Typography, CardMedia, CardContent, CardActionArea } from '@material-ui/core'
+import { CardContent, CardActionArea } from '@material-ui/core'
 import { ImageLogo } from '../basic-elements';
 import { centsToDollars } from '../../data/global/function/function';
 
@@ -31,6 +31,24 @@ export const ActualPrice = styled.div`
 	font-weight: 600;
 `;
 
+export const ImageContainer = styled.div`
+	position: relative;
+	width: auto;
+	height: auto;
+`;
+
+const ContainerLabel = styled.div`
+	background: red;
+	padding: 10px;
+	color: #fff;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	border-radius: 7px;
+	font-weight: 600;
+	font-size: 12px;
+`;
+
 export interface ICardProps {
 	maxwidth: string;
 	maxHeight: string;
@@ -42,6 +60,7 @@ export interface ICardProps {
 	retailPrice: number;
 	salePrice: number;
 	imageUrl: string;
+	isSoldOut: boolean;
 }
 
 export default function MediaCard(props: ICardProps) {
@@ -56,7 +75,8 @@ export default function MediaCard(props: ICardProps) {
 		cardHeight,
 		titleText,
 		retailPrice,
-		salePrice
+		salePrice,
+		isSoldOut
 	} = props;
 
 	return (
@@ -69,11 +89,19 @@ export default function MediaCard(props: ICardProps) {
 			color={color}
 		>
 			<CardActionArea>
-				<ImageLogo
-					height={180}
-					width={cardWidth}
-					src={imageUrl}
-				/>
+				<ImageContainer>
+					<ImageLogo
+						height={180}
+						width={cardWidth}
+						src={imageUrl}
+					/>
+					{isSoldOut && (
+						<ContainerLabel>
+							SOLD OUT
+						</ContainerLabel>
+					)}
+				</ImageContainer>
+
 				<CardContent>
 					<Title color={color}>
 						{titleText}
