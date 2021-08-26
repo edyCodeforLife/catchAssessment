@@ -6,7 +6,6 @@ import { createBrowserHistory } from 'history';
 import { StateProvider } from './data/states';
 import { initialState } from './data/initial-states';
 import { IAppState, appReducer } from "./data/reducers/app-reducer";
-import './interceptor.ts'
 
 const mainReducer = ({ application }: { application: IAppState }, action: any) => ({
 	application: appReducer(application, action),
