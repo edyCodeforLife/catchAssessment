@@ -1,12 +1,15 @@
 import { memo } from "react";
+import { HomeContent } from '../components/pages-component/home/index';
 
 function _ScreenHomePage(props: any) {
-
+	const { data } = props;
 
 	return (
 		<div className="loginContainer">
-			dsadsa
-
+			<HomeContent
+				data={data}
+				{...props}
+			/>
 		</div>
 	);
 }
