@@ -10,12 +10,12 @@ export interface IMenuListProps {
 	handleclick(event: React.MouseEvent<HTMLElement>): void;
 	children: any;
 	datalist: any[];
-	isSubheader?: boolean;
-	subHeaderName?: string;
+	issubheader?: boolean;
+	subheadername?: string;
 	handleclickselected?(selected: IDataList): void;
 	fieldname?: string;
 	minwidthlistitem?: number;
-	maxHeightListItem?: number;
+	maxheightlistitem?: number;
 }
 
 const MenuMain = styled(MenuList)`
@@ -51,7 +51,7 @@ const CustomSpecialistName = styled.span`
 `;
 
 function _MenuListItem(props: IMenuListProps) {
-	const { anchorEl, maxHeightListItem, minwidthlistitem, fieldname, handleclickselected, isSubheader, handleclose, handleclick, children, datalist, subHeaderName } = props;
+	const { anchorEl, maxheightlistitem, minwidthlistitem, fieldname, handleclickselected, issubheader, handleclose, handleclick, children, datalist, subheadername } = props;
 
 	return (
 		<div style={{ width: '100%' }}>
@@ -76,10 +76,10 @@ function _MenuListItem(props: IMenuListProps) {
 				}}
 				{...props}
 			>
-				<MenuMain maxheight={maxHeightListItem} minwidth={minwidthlistitem} subheader={
-					isSubheader ?
+				<MenuMain maxheight={maxheightlistitem} minwidth={minwidthlistitem} subheader={
+					issubheader ?
 						<CustomSubHeader disableSticky={true} component="div" id="nested-list-subheader">
-							{subHeaderName}
+							{subheadername}
 						</CustomSubHeader>
 						: null
 				}>
