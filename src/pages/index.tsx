@@ -1,10 +1,15 @@
-import { memo, useState, useEffect, useRef } from "react";
+import React, { memo, useState, useEffect, useRef } from "react";
 import { ScreenHomePage } from './screen';
 import { clone } from 'lodash';
 import { useGlobalState } from '../data/states';
 import { ModAlert } from '../components/alert/index';
 import { APP_ACTIONS } from '../data/reducers/app-reducer';
 import { IProductServiceData, ProductServiceData } from '../data/business/index';
+
+export interface IDataList {
+	label: string;
+	sortQuery: string;
+}
 
 function _HomePage(props) {
 	const _ProductService: IProductServiceData = new ProductServiceData();
@@ -16,7 +21,7 @@ function _HomePage(props) {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const [labelName, setLabelName] = useState<string>("SortBy")
 
-	const datalist = [
+	const datalist: IDataList[] = [
 		{
 			label: "Highest Price",
 			sortQuery: "highest"
@@ -27,7 +32,7 @@ function _HomePage(props) {
 		}
 	];
 
-	const handleclick = (event: any) => {
+	const handleclick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
 	};
 
@@ -70,7 +75,7 @@ function _HomePage(props) {
 		})
 	}
 
-	const handleClickSelected = (item) => {
+	const handleclickselected = (item: IDataList) => {
 		userInteraction.current = true;
 		setLabelName(item.label);
 		setSortQuery(item.sortQuery)
@@ -101,7 +106,7 @@ function _HomePage(props) {
 			metaData={metaData}
 			data={data}
 			labelName={labelName}
-			handleClickSelected={handleClickSelected}
+			handleclickselected={handleclickselected}
 			handleclick={handleclick}
 			handleclose={handleclose}
 			datalist={datalist}

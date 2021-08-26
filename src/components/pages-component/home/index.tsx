@@ -9,6 +9,7 @@ import { map } from 'lodash';
 import MaterialIcon from '@material/react-material-icon';
 import { IResults } from '../../../data/services/product/IProduct';
 import { MenuListItem } from '../../menu-list/menu-list';
+import { IHomePageProps } from '../../../pages/screen';
 
 export const ContainerContent = styled.div`
 	box-sizing: border-box;
@@ -85,8 +86,17 @@ export const LabelText = styled.div`
 `;
 
 
-function _HomeContent(props: any) {
-	const { data, metaData, labelName, handleClickSelected, handleclick, handleclose, datalist, anchorEl } = props;
+function _HomeContent(props: IHomePageProps) {
+	const {
+		data,
+		metaData,
+		labelName,
+		handleclickselected,
+		handleclick,
+		handleclose,
+		datalist,
+		anchorEl
+	} = props;
 
 	return (
 		<Fragment>
@@ -107,9 +117,9 @@ function _HomeContent(props: any) {
 									anchorEl={anchorEl}
 									handleclose={handleclose}
 									handleclick={handleclick}
-									handleClickSelected={handleClickSelected}
-									fieldName={"label"}
-									minWidthListItem={360}
+									handleclickselected={handleclickselected}
+									fieldname={"label"}
+									minwidthlistitem={360}
 								>
 									<FlexRowFullWidth>
 										<CustomFlexOne textAlign={'left'}>

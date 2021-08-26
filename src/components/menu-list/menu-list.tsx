@@ -2,6 +2,7 @@ import { memo } from 'react';
 import styled from 'styled-components';
 import { map } from 'lodash';
 import { Button, Menu, MenuItem, MenuList, ListSubheader } from '@material-ui/core/';
+import { IDataList } from '../../pages/index';
 
 export interface IMenuListProps {
 	anchorEl: Element;
@@ -11,9 +12,9 @@ export interface IMenuListProps {
 	datalist: any[];
 	isSubheader?: boolean;
 	subHeaderName?: string;
-	handleClickSelected?(selected: any): void;
-	fieldName?: string;
-	minWidthListItem?: number;
+	handleclickselected?(selected: IDataList): void;
+	fieldname?: string;
+	minwidthlistitem?: number;
 	maxHeightListItem?: number;
 }
 
@@ -50,7 +51,7 @@ const CustomSpecialistName = styled.span`
 `;
 
 function _MenuListItem(props: IMenuListProps) {
-	const { anchorEl, maxHeightListItem, minWidthListItem, fieldName, handleClickSelected, isSubheader, handleclose, handleclick, children, datalist, subHeaderName } = props;
+	const { anchorEl, maxHeightListItem, minwidthlistitem, fieldname, handleclickselected, isSubheader, handleclose, handleclick, children, datalist, subHeaderName } = props;
 
 	return (
 		<div style={{ width: '100%' }}>
@@ -75,7 +76,7 @@ function _MenuListItem(props: IMenuListProps) {
 				}}
 				{...props}
 			>
-				<MenuMain maxheight={maxHeightListItem} minwidth={minWidthListItem} subheader={
+				<MenuMain maxheight={maxHeightListItem} minwidth={minwidthlistitem} subheader={
 					isSubheader ?
 						<CustomSubHeader disableSticky={true} component="div" id="nested-list-subheader">
 							{subHeaderName}
@@ -83,9 +84,9 @@ function _MenuListItem(props: IMenuListProps) {
 						: null
 				}>
 
-					{map(datalist, (item, idx) => (
+					{map(datalist, (item: IDataList, idx: number) => (
 						<div key={idx} onClick={
-							() => { handleClickSelected(item) }
+							() => { handleclickselected(item) }
 						}>
 							<CustomMenuItem
 								key={idx}
@@ -94,7 +95,7 @@ function _MenuListItem(props: IMenuListProps) {
 
 								<div>
 									<CustomSpecialistName>
-										{item[fieldName]}
+										{item[fieldname]}
 									</CustomSpecialistName>
 								</div>
 							</CustomMenuItem>
